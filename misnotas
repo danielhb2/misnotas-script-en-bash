@@ -115,6 +115,7 @@ eliminar_nota() {
 }
 
 # Función para buscar texto en las notas
+# Función para buscar texto en las notas
 buscar_texto() {
     echo -n "Introduce el texto que deseas buscar: "
     read texto
@@ -124,14 +125,14 @@ buscar_texto() {
         return
     fi
     
-    # Buscar el texto en todas las notas (tanto .txt como .anexo)
-    resultados=$(grep -r -i -l "$texto" "$NOTAS_DIR")
+    # Buscar el texto solo en archivos .txt y .anexo
+    resultados=$(find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) -exec grep -l -i "$texto" {} \;)
     if [[ -z "$resultados" ]]; then
         echo "No se encontraron notas que contengan el texto '$texto'."
         sleep 1
     else
         echo "Notas que contienen el texto '$texto':"
-        nota_path=$(echo "$resultados" | fzf --preview="grep --color=always -i '$texto' {}")
+        nota_path=$(echo "$resultados" | fzf --preview-window=70%:wrap --preview-label='] RESULTADO DE LA BÚSQUEDA [' --preview="grep --color=always -i '$texto' {}")
         if [[ -n "$nota_path" ]]; then
             accion=$(printf "Previsualizar nota\nEditar nota\nVolver al menú principal" | \
                     fzf --height=8 \
@@ -155,18 +156,23 @@ buscar_texto() {
 
 # Función para encontrar una nota usando fzf
 encontrar_nota() {
+    local nota_seleccionada
     if command -v bat &> /dev/null; then
-        find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) | \
-        sed "s|$NOTAS_DIR/||" | \
-        fzf --preview="bat --style=plain --color=always $NOTAS_DIR/{}" \
+        nota_seleccionada=$(find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) -printf "%P\n" | \
+        fzf --preview="bat --style=plain --color=always '$NOTAS_DIR/{}'" \
             --header="Usa / para buscar, Enter para seleccionar" \
-            --preview-window="right:70%:wrap"
+            --preview-window="right:70%:wrap")
+        if [[ -n "$nota_seleccionada" ]]; then
+            echo "$NOTAS_DIR/$nota_seleccionada"
+        fi
     else
-        find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) | \
-        sed "s|$NOTAS_DIR/||" | \
-        fzf --preview="cat $NOTAS_DIR/{}" \
+        nota_seleccionada=$(find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) -printf "%P\n" | \
+        fzf --preview="cat '$NOTAS_DIR/{}'" \
             --header="Usa / para buscar, Enter para seleccionar" \
-            --preview-window="right:70%:wrap"
+            --preview-window="right:70%:wrap")
+        if [[ -n "$nota_seleccionada" ]]; then
+            echo "$NOTAS_DIR/$nota_seleccionada"
+        fi
     fi
 }
 
