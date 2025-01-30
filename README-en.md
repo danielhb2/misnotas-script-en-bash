@@ -58,7 +58,7 @@ chmod +x misnotas
 
 ### Start the program
 ```bash
-./misnotas
+misnotas
 ```
 
 ### Director Structure
