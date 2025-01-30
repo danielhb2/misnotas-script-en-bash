@@ -157,16 +157,16 @@ buscar_texto() {
 encontrar_nota() {
     if command -v bat &> /dev/null; then
         find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) | \
-        fzf --preview="bat --style=plain --color=always {}" \
+        sed "s|$NOTAS_DIR/||" | \
+        fzf --preview="bat --style=plain --color=always $NOTAS_DIR/{}" \
             --header="Usa / para buscar, Enter para seleccionar" \
-             --preview-label='] CONTENIDO [' \
-            --preview-window=right:70%:wrap
+            --preview-window="right:70%:wrap"
     else
         find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) | \
-        fzf --preview="cat {}" \
+        sed "s|$NOTAS_DIR/||" | \
+        fzf --preview="cat $NOTAS_DIR/{}" \
             --header="Usa / para buscar, Enter para seleccionar" \
-             --preview-label='] CONTENIDO [' \
-            --preview-window=right:70%:wrap
+            --preview-window="right:70%:wrap"
     fi
 }
 
