@@ -58,7 +58,7 @@ chmod +x notas.sh
 
 ### Iniciar el programa
 ```bash
-./misnotas
+misnotas
 ```
 
 ### Estructura de directorios
