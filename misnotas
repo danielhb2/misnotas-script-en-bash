@@ -16,7 +16,7 @@ mostrar_contenido() {
 # Función para mostrar el menú usando fzf
 mostrar_menu() {
     opcion=$(printf "Nueva nota\nNueva nota anexa\nEditar nota\nPrevisualizar notas\nAgregar contenido\nEliminar nota\nBuscar texto en notas\nSalir" | \
-    fzf --height=13 --border=rounded  --preview-window=70%:wrap --prompt="Selecciona una opción > " --header="================== ] GESTOR DE NOTAS [ ==================" --layout=reverse --preview-label='] CONTENIDO ['  --no-multi --color='header:cyan')
+    fzf --height=13 --border=rounded  --preview-window=70%:wrap --preview-label='] CONTENIDO [' --prompt="Selecciona una opción > " --header="================== ] GESTOR DE NOTAS [ ==================" --layout=reverse --preview-label='] CONTENIDO ['  --no-multi --color='header:cyan')
     
     case $opcion in
         "Nueva nota") nueva_nota "txt" ;;
@@ -161,6 +161,7 @@ encontrar_nota() {
         nota_seleccionada=$(find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) -printf "%P\n" | \
         fzf --preview="bat --style=plain --color=always '$NOTAS_DIR/{}'" \
             --header="Usa / para buscar, Enter para seleccionar" \
+            --preview-label='] CONTENIDO [' \
             --preview-window="right:70%:wrap")
         if [[ -n "$nota_seleccionada" ]]; then
             echo "$NOTAS_DIR/$nota_seleccionada"
@@ -169,6 +170,7 @@ encontrar_nota() {
         nota_seleccionada=$(find "$NOTAS_DIR" -type f \( -name "*.txt" -o -name "*.anexo" \) -printf "%P\n" | \
         fzf --preview="cat '$NOTAS_DIR/{}'" \
             --header="Usa / para buscar, Enter para seleccionar" \
+            --preview-label='] CONTENIDO [' \
             --preview-window="right:70%:wrap")
         if [[ -n "$nota_seleccionada" ]]; then
             echo "$NOTAS_DIR/$nota_seleccionada"
