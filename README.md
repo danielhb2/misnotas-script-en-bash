@@ -58,7 +58,7 @@ chmod +x notas.sh
 
 ### Iniciar el programa
 ```bash
-./notas.sh
+./misnotas
 ```
 
 ### Estructura de directorios
@@ -103,4 +103,5 @@ EDITOR="nano"  # Cambiar a vim, emacs, etc.
 - Se crea automáticamente un directorio para cada año
 - Solo se permite una nota principal y una anexa por día
 - Los archivos se nombran automáticamente con el formato DD-MM-YYYY
+- Puede modificar el directorio principal editando la variable NOTAS_DIR
 
