@@ -1,5 +1,5 @@
 # Gestor de Notas en Bash
-### Autor: Daniel Horacio Braga
+### Autor: Daniel Horacio Braga - IA
 ## Descripción
 Este script es un gestor de notas simple pero potente que permite crear, editar y organizar notas diarias desde la línea de comandos. Las notas se organizan automáticamente en directorios por año y se nombran según la fecha de creación.  
 Base creada por IA, ajustes y modificaciones hechas por DHB
