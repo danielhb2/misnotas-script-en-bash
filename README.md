@@ -92,6 +92,7 @@ El script crea y mantiene la siguiente estructura:
 El script usa las siguientes aplicaciones por defecto:
 - Editor: nano
 - Visor: bat (o cat si bat no está instalado)
+- Puede modificar el directorio principal editando la variable NOTAS_DIR
 
 Para cambiar el editor, modifica la variable EDITOR al inicio del script:
 ```bash
@@ -103,5 +104,4 @@ EDITOR="nano"  # Cambiar a vim, emacs, etc.
 - Se crea automáticamente un directorio para cada año
 - Solo se permite una nota principal y una anexa por día
 - Los archivos se nombran automáticamente con el formato DD-MM-YYYY
-- Puede modificar el directorio principal editando la variable NOTAS_DIR
 
