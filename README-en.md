@@ -73,13 +73,13 @@ The script creates and maintains the following structure:
 ```
 
 ### Operations available
-1. ** New note **: Create a main note for the current day
-2. ** NEW ANNEXA Note **: Create an attached note for the current day
-3. ** Edit note **: Select and edit an existing note
-4. ** Preview notes **: See the content of a note
-5. ** Add content **: Add text to an existing note
-6. ** Remove note **: Delete a selected note
-7. ** Search text **: Search text in all notes
+1. **New note**: Create a main note for the current day
+2. **NEW ANNEXA Note**: Create an attached note for the current day
+3. **Edit note**: Select and edit an existing note
+4. **Preview notes**: See the content of a note
+5. **Add content**: Add text to an existing note
+6. **Remove note**: Delete a selected note
+7. **Search text**: Search text in all notes
 
 ### Navigation
 - Use arrows ↑/↓ to move between options
