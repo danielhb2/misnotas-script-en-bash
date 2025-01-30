@@ -9,7 +9,7 @@ Base created by IA, adjustments and modifications made by DHB
 - Automatic notes organization per year
 - Two types of notes per day:
   - Main note (.txt)
-  - Annexes (. anexo)
+  - Annexes (.anexo)
 - Text search in all notes
 - Content preview
 - Content edition and aggregate
